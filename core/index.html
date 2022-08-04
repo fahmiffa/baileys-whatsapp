@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WAF</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div id="app" class="container">
+        <h4 class="text-center py-3">WAF</h1>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="small">Silahkan Reload jika qrcode tidak muncul</p>
+                    <img src="" alt="QR Code" id="qrcode">
+                </div>
+                <div class="col-sm-6">
+                     <span id="ref"></span>
+                    <h5>Logs:</h3>
+                        <ul class="logs"></ul>
+                </div>
+            </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <script>
+    
+    const url = window.location.href;
+    const lastSegment = url.split("/").pop();
+
+            var socket = io();
+            
+            
+            socket.emit('StartConnection',lastSegment);
+            socket.on('message', function (msg) {
+
+                $('.logs').append($('<li>').text(msg));
+            });
+
+            socket.on('qr', function (src) {
+                $('#qrcode').attr('src', src);
+                $('#qrcode').show();
+            });
+
+            socket.on('ready', function (data) {
+                $('#logout').attr('href', '/logout/' + data);
+                $("#ref").html('<button class="btn btn-danger mb-3" id="logout" onclick="logout('+data+')">Logout</button>');
+                $('#qrcode').hide();
+            });
+        
+           function logout(device){
+            socket.emit('LogoutDevice',device)
+            }        
+    </script>
+</body>
+
+</html>
