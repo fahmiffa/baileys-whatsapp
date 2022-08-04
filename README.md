@@ -4,4 +4,4 @@ whatsapp baileys v4
 # Install
 - npm run start
 
-chcek browser localhost:5000
+chcek browser localhost:9000
