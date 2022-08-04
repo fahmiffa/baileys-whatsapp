@@ -52,7 +52,7 @@ io.on("connection", (socket) => {
         printQRInTerminal: false,
         auth: state,
         logger: pino({ level: "fatal" }),
-        browser: ["WAF"],
+        browser: ["FFA", "EDGE", "1.0"],
       });
       sock.ev.on("connection.update", (update) => {
         const { connection, lastDisconnect, qr, isNewLogin } = update;
