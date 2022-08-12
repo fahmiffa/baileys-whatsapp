@@ -1,22 +1,16 @@
 const {
   default: makeWASocket,
-  BufferJSON,
-  initInMemoryKeyStore,
   DisconnectReason,
-  MessageType,
-  MessageOptions,
-  Mimetype,
-  makeInMemoryStore,
   useSingleFileAuthState,
 } = require("@adiwajshing/baileys");
 
-const fs = require("fs");
 const pino = require("pino");
+const fs = require("fs");
 const path = "./core/";
+let x;
 
 exports.gas = function (msg, no, to) {
   const numb = no + ".json";
-  console.log(numb);
   connect(numb, msg, to);
 };
 
@@ -24,10 +18,10 @@ async function connect(sta, msg, to) {
   const { state, saveState } = useSingleFileAuthState(path.concat(sta));
 
   const sock = makeWASocket({
-    printQRInTerminal: false,
     auth: state,
+    defaultQueryTimeoutMs: undefined,
     logger: pino({ level: "fatal" }),
-    browser: ["WAF"],
+    browser: ["FFA", "EDGE", "1.0"],
   });
 
   sock.ev.on("connection.update", (update) => {
@@ -48,11 +42,12 @@ async function connect(sta, msg, to) {
       }
     } else if (connection === "open") {
       if (msg != null && to != null) {
-        const id = to + "@s.whatsapp.net";
-        sock.sendMessage(id, {
-          text: msg,
-        });
-        console.log("send");
+        for (let x in to) {
+          const id = to[x] + "@s.whatsapp.net";
+          sock.sendMessage(id, {
+            text: msg,
+          });
+        }
       }
     }
   });

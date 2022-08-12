@@ -1,7 +1,5 @@
 const {
   default: makeWASocket,
-  BufferJSON,
-  DisconnectReason,
   useSingleFileAuthState,
 } = require("@adiwajshing/baileys");
 
@@ -31,11 +29,13 @@ const io = socketIO(server);
 //   },
 // });
 
+let x;
+
 const path = "./core/";
 
 const { body, validationResult } = require("express-validator");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 io.on("connection", (socket) => {
@@ -122,17 +122,50 @@ app.post(
       var msg = req.body.message;
 
       if (fs.existsSync(path.concat(number) + ".json")) {
-        const ps = con.gas(msg, number, to);
+        if (Array.isArray(to)) {
+          try {
+            for (let x in to) {
+              if (to[x].length < 12) {
+                throw "value number invalid, must be greater than 12 digit";
+              }
+            }
 
-        res.writeHead(200, {
-          "Content-Type": "application/json",
-        });
-        res.end(
-          JSON.stringify({
-            status: true,
-            message: "sukses",
-          })
-        );
+            con.gas(msg, number, to);
+            // for (let x in to) {
+            //   console.log(to[x]);
+            //   con.gas(msg, number, to[x]);
+            // }
+            res.writeHead(200, {
+              "Content-Type": "application/json",
+            });
+            res.end(
+              JSON.stringify({
+                status: true,
+                message: "success",
+              })
+            );
+          } catch (error) {
+            res.writeHead(401, {
+              "Content-Type": "application/json",
+            });
+            res.end(
+              JSON.stringify({
+                status: false,
+                message: error,
+              })
+            );
+          }
+        } else {
+          res.writeHead(401, {
+            "Content-Type": "application/json",
+          });
+          res.end(
+            JSON.stringify({
+              status: false,
+              message: "input type to is not array value",
+            })
+          );
+        }
       } else {
         res.writeHead(401, {
           "Content-Type": "application/json",

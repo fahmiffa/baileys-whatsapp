@@ -15,32 +15,8 @@
 <body>
 
     <div class="container py-5">
-        <h4>Whatsapp API</h4>
-        <p>Berikut Keterangan Singkat Whatsapp APi :</p>
-        <ul>
-            <li>Menggunakan Library v4 Baileys</li>
-            <li>Support untuk Install di shared hosting</li>
-            <li>Free digunakan dengan mengakses <a href="/device" target="_blank">Demo</a></li>
-            <li>Fitur tersedia hanya mengirim pesan whatsapp saja, karena niat awal di buat untuk notifikasi saja
-            </li>
-            <li>Teknologi yang di pakai menggunakan murni Node JS</li>
-            <li>Akan selalu update mengikuti referensi Whatsapp APi dan Waktu kesibukan yang tersedia</li>
-        </ul>
-        <p>Whatsapp APi ini masih banyak kekurangan ini hanya Penggunaan basic saja, jika ada eror atau terkait apa
-            mohon di wajarkan</p>
-
-        <p>Whatsapp API ini free, jika ingin mendapatkan source codenya, silahkan berdonasi bebas bisa cek <a
-                href="https://fahmiffa.blogspot.com/2022/04/whatsapp-api-node-js-free.html">dimari</a>
-        </p>
-        <p class="small text-danger font-weight-bold"> NB: Link Whatsapp ini bisa saja mati, sampai batas yang tidak
-            di tentukan
-            tergantung, untuk update link akan di beritahukan di laman blog
-            dan mengakses laman ini anda berarti menyetujui semua ketentuan di atas.
-        </p>
-
-        <p class="text-danger h5">Logout Device masih Manual, Tidak sinkron sama whatsapp di device, Jadi ketika logout
-            whatsapp web nya, di device harus logout manual </p>
-
+        <h4>Whatsapp API Library v4 Baileys</h4>
+        <p>visit to <a href="/device" target="_blank">Try </a>:</p>
         <hr>
         <p class="h4">DOC API</p>
 
@@ -51,7 +27,7 @@
                         <p style="line-height:1.5">Send a message to a new or existing chat. This function serves to
                             send messages to the user</p>
                         <code class="btn btn-dark" style="font-size: 0.8rem;">
-                                    <span class="label label-primary" style="position: relative;padding: 0.2rem;margin-right: 5px;background-color: #428bca;">POST</span>https://api.stiker-label.com/send
+                                    <span class="label label-primary" style="position: relative;padding: 0.2rem;margin-right: 5px;background-color: #428bca;">POST</span><span class="uri"></span>send
                                 </code>
                         <br>
                         <div class="code-block">
@@ -66,7 +42,7 @@
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_CUSTOMREQUEST</span><span class="token punctuation">,</span> <span class="token string">"POST"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POSTFIELDS</span><span class="token punctuation">,</span> <span class="token function">http_build_query</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">'https://api.stiker-label.com/send'<span class="token punctuation">);</span></span>
+<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">'<span class="uri"></span>send'<span class="token punctuation">);</span></span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYHOST</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYPEER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -78,7 +54,6 @@
 <span class="token delimiter">?&gt;</span></span></code>
                                 </pre>
                         </div>
-                        <!--//code-block-->
 
                         <h6>Request parameters:</h6>
                         <div class="table-responsive">
@@ -106,7 +81,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!--//section-block-->
 
                 </div>
             </div>
@@ -116,5 +90,15 @@
     </div>
 
 </body>
+
+<script>
+    const url = window.location.href;
+    const n = document.getElementsByClassName("uri").length;
+
+    for (let i = 0; i < n; i++) {
+        document.getElementsByClassName("uri")[i].textContent = url;
+    }
+
+</script>
 
 </html>
