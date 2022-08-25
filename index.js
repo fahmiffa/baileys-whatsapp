@@ -105,6 +105,7 @@ app.post(
     body("number").notEmpty(),
     body("message").notEmpty(),
     body("to").notEmpty(),
+    body("type").notEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req).formatWith(({ msg }) => {
@@ -119,6 +120,7 @@ app.post(
     } else {
       var number = req.body.number;
       var to = req.body.to;
+      var type = req.body.type;
       var msg = req.body.message;
 
       if (fs.existsSync(path.concat(number) + ".json")) {
@@ -130,11 +132,7 @@ app.post(
               }
             }
 
-            con.gas(msg, number, to);
-            // for (let x in to) {
-            //   console.log(to[x]);
-            //   con.gas(msg, number, to[x]);
-            // }
+            con.gas(msg, number, to, type);
             res.writeHead(200, {
               "Content-Type": "application/json",
             });

@@ -6,15 +6,16 @@ const {
 
 const pino = require("pino");
 const fs = require("fs");
+const { Console } = require("console");
 const path = "./core/";
 let x;
 
-exports.gas = function (msg, no, to) {
+exports.gas = function (msg, no, to, type) {
   const numb = no + ".json";
-  connect(numb, msg, to);
+  connect(numb, msg, to, type);
 };
 
-async function connect(sta, msg, to) {
+async function connect(sta, msg, to, type) {
   const { state, saveState } = useSingleFileAuthState(path.concat(sta));
 
   const sock = makeWASocket({
@@ -44,9 +45,51 @@ async function connect(sta, msg, to) {
       if (msg != null && to != null) {
         for (let x in to) {
           const id = to[x] + "@s.whatsapp.net";
-          sock.sendMessage(id, {
-            text: msg,
-          });
+
+          if (type === "chat") {
+            sock.sendMessage(id, {
+              text: msg,
+            });
+          } else if (type === "button") {
+            const Buttons = msg.buttons;
+            const template = Object.assign(msg.buttonMessage, {
+              templateButtons: Buttons,
+            });
+
+            const templateButtons = [
+              {
+                index: 1,
+                urlButton: {
+                  displayText: "⭐ Star Baileys on GitHub!",
+                  url: "https://github.com/adiwajshing/Baileys",
+                },
+              },
+              {
+                index: 2,
+                callButton: {
+                  displayText: "Call me!",
+                  phoneNumber: "+1 (234) 5678-901",
+                },
+              },
+              {
+                index: 3,
+                quickReplyButton: {
+                  displayText: "This is a reply, just like normal buttons!",
+                  id: "id-like-buttons-message",
+                },
+              },
+            ];
+
+            const buttonMessage = {
+              text: "Hi it's a template message",
+              footer: "Hello World",
+              templateButtons: templateButtons,
+              image: {
+                url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png",
+              },
+            };
+            sock.sendMessage(id, template);
+          }
         }
       }
     }
