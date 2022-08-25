@@ -42,7 +42,7 @@
 
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_CUSTOMREQUEST</span><span class="token punctuation">,</span> <span class="token string">"POST"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POSTFIELDS</span><span class="token punctuation">,</span> <span class="token function">http_build_query</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POSTFIELDS</span><span class="token punctuation">,</span> <span class="token function">json_data</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">'<span class="uri"></span>send'<span class="token punctuation">);</span></span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYHOST</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYPEER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -71,36 +71,36 @@
 <span class="token variable">$curl</span> <span class="token operator">=</span><span class="token function"> curl_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token variable">$data</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
 <span class="token string">'number'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">'6281xxx'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// number sender</span>
-<span class="token string">'message'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">{</span>
+<span class="token string">'message'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">[</span>
         <span class="token string">"buttons":</span>        
-            <span class="token string">[</span>
-                <span class="token string">{</span>
-                    <span class="token string">"index" :</span><span class="token string">1,</span>
-                    <span class="token string">"urlButton" :</span><span class="token string">{</span><span class="token string">"displayText" : "Apply Now", </span> <span class="token string">"url" : "https://api.stiker-label.com/"</span><span class="token string">},</span>                    
-                <span class="token string">},</span>
-                <span class="token string">{</span>
-                    <span class="token string">"index" :</span><span class="token string">2,</span>
-                    <span class="token string">"callButton" :</span><span class="token string">{</span><span class="token string">"displayText" : ""Button Call me", </span><span class="token string">"phoneNumber" : "+6285640431181"</span><span class="token string">},</span>                    
-                <span class="token string">},</span>
-                <span class="token string">{</span>
-                    <span class="token string">"index" :</span><span class="token string">"3",</span>
-                    <span class="token string">"quickReplyButton" :</span><span class="token string">{</span><span class="token string">"displayText" : "reply Button", </span><span class="token string">"id" : "result reply button"</span><span class="token string">},</span>                    
-                <span class="token string">}</span>
+            <span class="token string">[</span>                
+                <span class="token string">[</span>
+                    <span class="token string">"index" =></span><span class="token string">1,</span>
+                    <span class="token string">"urlButton" =></span><span class="token string">[</span><span class="token string">"displayText" => "Apply Now", </span> <span class="token string">"url" => "https://api.stiker-label.com/"</span><span class="token string">],</span>                    
+                <span class="token string">],</span>
+                <span class="token string">[</span>
+                    <span class="token string">"index" =></span><span class="token string">2,</span>
+                    <span class="token string">"callButton" =></span><span class="token string">[</span><span class="token string">"displayText" => "Button Call me", </span><span class="token string">"phoneNumber" => "+6285640431181"</span><span class="token string">],</span>                    
+                <span class="token string">],</span>
+                <span class="token string">[</span>
+                    <span class="token string">"index" =></span><span class="token string">3,</span>
+                    <span class="token string">"quickReplyButton" =></span><span class="token string">{</span><span class="token string">"displayText" => "reply Button", </span><span class="token string">"id" => "result reply button"</span><span class="token string">],</span>                    
+                <span class="token string">]</span>
             <span class="token string">],</span>
             <span class="token string">"buttonMessage":</span>                                        
-                <span class="token string">{</span>
+                <span class="token string">[</span>
                     <span class="token string">"text" :</span><span class="token string">"Hi it's a button message",</span>
                     <span class="token string">"footer" :</span><span class="token string">"Hello World",</span>
                     <span class="token string">"headerType" :</span><span class="token string">1</span>
-                <span class="token string">{</span>                                
-    <span class="token string">}</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// button content</span>
+                <span class="token string">]</span>                                
+    <span class="token string">]</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// button content</span>
 <span class="token string">'type'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">'button'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// type delivery</span>            
 <span class="token string">'to'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">'6281xxx'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// number receiver</span>
 <span class="token punctuation">]</span><span class="token punctuation">;</span>
 
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_CUSTOMREQUEST</span><span class="token punctuation">,</span> <span class="token string">"POST"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POSTFIELDS</span><span class="token punctuation">,</span> <span class="token function">http_build_query</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POSTFIELDS</span><span class="token punctuation">,</span> <span class="token function">json_data</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">'<span class="uri"></span>send'</span><span class="token punctuation">);</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYHOST</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYPEER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
