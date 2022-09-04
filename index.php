@@ -2,27 +2,7 @@
 $curl = curl_init();
 $data = [
 "number" => "6285640431181",// number sender
-"message" => [
-                "buttons" => [
-                    [
-                        "index"=>1,
-                        "urlButton"=>[ "displayText"=>"Apply Now", "url"=> "https://api.stiker-label.com" ]
-                    ],
-                    [
-                        "index"=>2,
-                        "callButton"=>["displayText"=>"Button Call me", "phoneNumber"=>"+6285640431181"]
-                    ],
-                    [
-                        "index"=>3,
-                        "quickReplyButton"=>["displayText"=>"reply Button", "id"=>"result reply button"]
-                    ]
-                ],
-                "buttonMessage"=>[
-                    "text"=>"Hi it's a button message",
-                    "footer"=>"Hello World",
-                    "headerType"=>1,
-                ]
-            ],
+"message" => "tes",
 "type" => "button", // type delivery            
 "to" => ["6285226061579"], // number receiver
 ];

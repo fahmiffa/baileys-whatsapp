@@ -55,100 +55,40 @@
 <span class="token delimiter">?&gt;</span></span></code>
                                 </pre>
                         </div>
-                        <hr />
-
-                        <h5 class="block-title">Send Whatsapp Button Messages</h3>
-                            <p style="line-height:1.5">Send a message, This function serves to send messages
-                                to
-                                the user</p>
-                            <code class="btn btn-dark" style="font-size: 0.8rem;">
-                            <span class="label label-primary" style="position: relative;padding: 0.2rem;margin-right: 5px;background-color: #428bca;">POST</span><span class="uri"></span>send
-                        </code>
-                            <br>
-                            <div class="code-block">
-                                <pre class=" language-php"
-                                    style="background: black;margin-bottom: 30px;margin-top: 30px;overflow: auto;"><code class=" language-php"><span class="token php"><span class="token delimiter">&lt;?php</span>
-<span class="token variable">$curl</span> <span class="token operator">=</span><span class="token function"> curl_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$data</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
-<span class="token string">'number'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">'6281xxx'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// number sender</span>
-<span class="token string">'message'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">[</span>
-        <span class="token string">"buttons":</span>        
-            <span class="token string">[</span>                
-                <span class="token string">[</span>
-                    <span class="token string">"index" =></span><span class="token string">1,</span>
-                    <span class="token string">"urlButton" =></span><span class="token string">[</span><span class="token string">"displayText" => "Apply Now", </span> <span class="token string">"url" => "https://api.stiker-label.com/"</span><span class="token string">],</span>                    
-                <span class="token string">],</span>
-                <span class="token string">[</span>
-                    <span class="token string">"index" =></span><span class="token string">2,</span>
-                    <span class="token string">"callButton" =></span><span class="token string">[</span><span class="token string">"displayText" => "Button Call me", </span><span class="token string">"phoneNumber" => "+6285640431181"</span><span class="token string">],</span>                    
-                <span class="token string">],</span>
-                <span class="token string">[</span>
-                    <span class="token string">"index" =></span><span class="token string">3,</span>
-                    <span class="token string">"quickReplyButton" =></span><span class="token string">{</span><span class="token string">"displayText" => "reply Button", </span><span class="token string">"id" => "result reply button"</span><span class="token string">],</span>                    
-                <span class="token string">]</span>
-            <span class="token string">],</span>
-            <span class="token string">"buttonMessage":</span>                                        
-                <span class="token string">[</span>
-                    <span class="token string">"text" :</span><span class="token string">"Hi it's a button message",</span>
-                    <span class="token string">"footer" :</span><span class="token string">"Hello World",</span>
-                    <span class="token string">"headerType" :</span><span class="token string">1</span>
-                <span class="token string">]</span>                                
-    <span class="token string">]</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// button content</span>
-<span class="token string">'type'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">'button'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// type delivery</span>            
-<span class="token string">'to'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">'6281xxx'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// number receiver</span>
-<span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_CUSTOMREQUEST</span><span class="token punctuation">,</span> <span class="token string">"POST"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POSTFIELDS</span><span class="token punctuation">,</span> <span class="token function">json_data</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">'<span class="uri"></span>send'</span><span class="token punctuation">);</span>
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYHOST</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_SSL_VERIFYPEER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_HTTPHEADER</span><span class="token punctuation">,</span> <span class="token string">['Accept: application/json','Content-Type: application/json']</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">echo</span> "<span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pre</span><span class="token punctuation">&gt;</span></span></span>"<span class="token punctuation">;</span>
-<span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token delimiter">?&gt;</span></span></code>
-                </pre>
-                            </div>
-
-                            <h6>Request parameters:</h6>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">number</th>
-                                            <td>Required</td>
-                                            <td>sender phone number. You can use the country code prefix . Example:
-                                                6281223xxxx</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">type</th>
-                                            <td>Required</td>
-                                            <td>type send</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">message</th>
-                                            <td>Required</td>
-                                            <td>Text message to be sent. Format: UTF-8 or UTF-16 string. for single
-                                                newline
-                                                (\n1 or PHP_EOL), double newline (\n2 or PHP_EOL PHP_EOL). maximum
-                                                character
-                                                is 1000</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">to</th>
-                                            <td>Required</td>
-                                            <td>receiver phone number. You can use the country code prefix . Example:
-                                                6281223xxxx</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <hr>
+                        <h6>Request parameters:</h6>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">number</th>
+                                        <td>Required</td>
+                                        <td>sender phone number. You can use the country code prefix . Example:
+                                            6281223xxxx</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">type</th>
+                                        <td>Required</td>
+                                        <td>type send</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">message</th>
+                                        <td>Required</td>
+                                        <td>Text message to be sent. Format: UTF-8 or UTF-16 string. for single
+                                            newline
+                                            (\n1 or PHP_EOL), double newline (\n2 or PHP_EOL PHP_EOL). maximum
+                                            character
+                                            is 1000</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">to</th>
+                                        <td>Required</td>
+                                        <td>receiver phone number. You can use the country code prefix . Example:
+                                            6281223xxxx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                 </div>
             </div>

@@ -45,18 +45,10 @@ async function connect(sta, msg, to, type) {
       if (msg != null && to != null) {
         for (let x in to) {
           const id = to[x] + "@s.whatsapp.net";
-
           if (type === "chat") {
             sock.sendMessage(id, {
               text: msg,
             });
-          } else if (type === "button") {
-            const Buttons = msg.buttons;
-            const template = Object.assign(msg.buttonMessage, {
-              templateButtons: Buttons,
-            });
-
-            sock.sendMessage(id, template);
           }
         }
       }
