@@ -3,7 +3,7 @@ $curl = curl_init();
 $data = [
 "number" => "6285640431181",// number sender
 "message" => "tes",
-"type" => "button", // type delivery            
+"type" => "chat", // type delivery            
 "to" => ["6285226061579"], // number receiver
 ];
 
